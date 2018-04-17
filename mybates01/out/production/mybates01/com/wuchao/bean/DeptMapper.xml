@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuchao.bean.Dept">
+
+    <select id="getDeptByNo" parameterType="int" resultType="Dept">
+        select * from dept where deptno=#{deptno}
+    </select>
+
+    <!--方法① 连接查询-->
+    <resultMap id="deptFullMap" type="Dept" autoMapping="true">
+        <id property="deptno" column="deptno"/>
+        <collection property="empList" ofType="Emp" resultMap="com.wuchao.bean.Emp.empBase" >
+            <!--<id property="empno" column="empno"/>
+            <result property="ename" column="ename"/>
+            <result property="job" column="job"/>
+            <result property="sal" column="sal"/>
+            <result property="comm" column="comm"/>
+            <result property="hiredate" column="hiredate"/>-->
+        </collection>
+    </resultMap>
+    <select id="getDeptFull" resultMap="deptFullMap">
+        select
+            d.deptno,d.dname,d.loc,
+            e.empno,e.ename,e.job,e.mgr,e.sal,e.comm,e.hiredate
+        from dept d join emp e on d.deptno=e.deptno
+    </select>
+
+
+    <!--方法② 多条Sql语句组合-->
+    <resultMap id="deptFullMap2" type="Dept" autoMapping="true">
+        <id property="deptno" column="deptno"/>
+        <collection property="empList" ofType="Emp"
+                   column="deptno" select="com.wuchao.bean.Emp.getEmpByEmpDeptno"/>
+    </resultMap>
+
+
+    <select id="getDeptFull2" resultMap="deptFullMap2">
+        select d.deptno,d.dname,d.loc from dept d
+    </select>
+
+</mapper>

@@ -1,0 +1,27 @@
+ Mapped "{[/pause || /pause.json],me
+ Mapped "{[/metrics/{name:.*}],methoe
+ Mapped "{[/metrics || /metrics.json.
+ Mapped "{[/archaius || /archaius.jso
+ Mapped "{[/trace || /trace.json],meu
+ Mapped "{[/refresh || /refresh.json
+ Mapped "{[/health || /health.json],c
+ Mapped "{[/service-registry/instancs
+ Mapped "{[/service-registry/instancR
+ Mapped "{[/restart || /restart.json
+ Mapped "{[/resume || /resume.json],
+ Mapped "{[/autoconfig || /autoconfik
+ Mapped "{[/info || /info.json],metht
+ Mapped "{[/beans || /beans.json],meu
+ Mapped "{[/dump || /dump.json],metht
+ Mapped "{[/configprops || /configpro
+ Mapped "{[/loggers/{name:.*}],methoe
+ Mapped "{[/loggers/{name:.*}],methol
+ Mapped "{[/loggers || /loggers.json.
+ Mapped "{[/auditevents || /auditeveE
+ Mapped "{[/features || /features.jso
+ Mapped "{[/env/{name:.*}],methods=[d
+ Mapped "{[/env || /env.json],method.
+ Mapped "{[/heapdump || /heapdump.jso
+ Mapped "{[/env],methods=[POST]}" ona
+ Mapped "{[/env/reset],methods=[POST(
+ Mapped "{[/mappings || /ma

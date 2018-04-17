@@ -1,0 +1,4 @@
+person\jack\AppOne.class
+person\jack\controller\HelloController.class
+person\jack\statusmgr\MyHealthIndicator.class
+person\jack\statusmgr\MyHealthHander.class

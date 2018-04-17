@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuchao.bean.Orders">
+    
+    <resultMap id="getOrdersMap" type="com.wuchao.bean.Orders">
+        <id property="orderId" column="order_id"/>
+        <result property="orderName" column="order_name"/>
+        <result property="orderBalance" column="order_balance"/>
+        <result property="orderDate" column="order_date"/>
+
+    </resultMap>
+    
+    <select id="getOrdersAll" resultMap="getOrdersMap">
+        select * from orders
+    </select>
+</mapper>

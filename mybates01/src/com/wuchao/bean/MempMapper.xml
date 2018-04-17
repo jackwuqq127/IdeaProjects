@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuchao.bean.Emp">
+
+    <!-- CRUD 操作
+        C reate new records
+        R etrieve existing records. Retrieve 检索
+        U pdate existing records.
+        D elete existing records.
+    -->
+
+    <insert id="addEmp" parameterType="Emp">
+        insert into emp(empno,ename,job,sal,deptno) VALUES (emp_empno.nextval,#{ename},#{job},#{sal},#{deptno})
+    </insert>
+
+    <delete id="delEmp" parameterType="int">
+        delete from emp where empno=#{empno}
+    </delete>
+
+    <update id="updEmp" parameterType="Emp">
+        update emp set ename=#{ename},job=#{job},sal=#{sal},hiredate=#{hiredate} where empno=#{empno}
+    </update>
+
+    <select id="getEmpByEmpno" resultType="Emp">
+       select * from emp where empno=#{empno}
+    </select>
+
+    <select id="getEmpByEmpDeptno" resultType="Emp" parameterType="int">
+        select * from emp where deptno=#{deptno}
+    </select>
+
+    <select id="getEmpAll" resultType="OracleEmp">
+       select * from emp
+   </select>
+
+    <select id="getEmpAllMap" resultType="map">
+        select * from emp
+    </select>
+
+    <!-- 一对一关联 ：方法①      通过别名的方式赋值对象-->
+    <select id="getEmpDept" resultType="Emp">
+        select
+            e.empno,e.ename,e.job,e.mgr,e.sal,e.comm,e.hiredate,
+            e2.empno "mgr.empno",e2.ename "mgr.ename",e2.job "mgr.job",e2.sal "mgr.sal",e2.comm "mgr.comm",e2.hiredate "mgr.hiredate",
+            d.deptno "dept.deptno",d.dname "dept.dname",d.loc "dept.loc"
+        from emp e join dept d on e.deptno=d.deptno join emp e2 on e.mgr=e2.empno
+    </select>
+
+    <!-- 一对一关联 ：方法2 resultMap 使用association 子标签赋值，逻辑上同【方法①】相近-->
+    <resultMap id="empBase" type="Emp">
+        <id property="empno" column="empno"/>
+        <result property="ename" column="ename"/>
+        <result property="job" column="job"/>
+        <result property="sal" column="sal"/>
+        <result property="comm" column="comm"/>
+        <result property="hiredate" column="hiredate"/>
+    </resultMap>
+
+    <!--extends="empBase"  autoMapping="true"-->
+    <resultMap id="deptForEmp" type="Emp" autoMapping="true" >
+        <association property="dept" javaType="Dept">
+            <id property="deptno" column="deptno"/>
+            <result property="dname" column="dname"/>
+            <result property="loc" column="loc"/>
+        </association>
+
+        <association property="mgr" javaType="Emp">
+            <id property="empno" column="mempno"/>
+            <result property="ename" column="mename"/>
+            <result property="job" column="mjob"/>
+            <result property="sal" column="msal"/>
+            <result property="comm" column="mcomm"/>
+            <result property="hiredate" column="mhiredate"/>
+        </association>
+    </resultMap>
+    <select id="getEmpDeptMap" resultMap="deptForEmp">
+        select
+        e.empno,e.ename,e.job,e.mgr,e.sal,e.comm,e.hiredate,
+        e2.empno mempno,e2.ename mename,e2.job mjob,e2.sal msal,e2.comm mcomm,e2.hiredate mhiredate,
+        d.deptno,d.dname,d.loc
+        from emp e join dept d on e.deptno=d.deptno join emp e2 on e.mgr=e2.empno
+    </select>
+
+    <!-- 一对一关联 ：方法3 多条Sql语句组合-->
+
+
+
+    <resultMap id="empMap3" type="Emp" autoMapping="true">
+        <association property="mgr" column="mgr" select="getEmpByEmpno" />
+        <association property="dept" column="deptno" select="com.wuchao.bean.Dept.getDeptByNo" />
+    </resultMap>
+
+
+
+    <select id="getEmpDeptMap3" resultMap="empMap3">
+        select * from emp
+    </select>
+
+</mapper>

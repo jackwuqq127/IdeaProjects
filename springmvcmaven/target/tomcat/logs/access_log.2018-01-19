@@ -1,0 +1,9 @@
+0:0:0:0:0:0:0:1 - - [19/Jan/2018:21:53:30 +0800] "GET /mavenmvc/emp/addEmp HTTP/1.1" 200 1666 http-bio-8080-exec-1 2195
+0:0:0:0:0:0:0:1 - - [19/Jan/2018:21:53:30 +0800] "GET /mavenmvc/js/jquery-3.2.1.min.js HTTP/1.1" 304 - http-bio-8080-exec-2 120
+0:0:0:0:0:0:0:1 - - [19/Jan/2018:21:53:30 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [19/Jan/2018:21:54:02 +0800] "GET /mavenmvc/ HTTP/1.1" 200 1158 http-bio-8080-exec-4 88
+0:0:0:0:0:0:0:1 - - [19/Jan/2018:21:54:12 +0800] "GET /mavenmvc/emp/setLanguage?language=en_US HTTP/1.1" 302 - http-bio-8080-exec-7 9
+0:0:0:0:0:0:0:1 - - [19/Jan/2018:21:54:12 +0800] "GET /mavenmvc/index HTTP/1.1" 200 1150 http-bio-8080-exec-8 5
+0:0:0:0:0:0:0:1 - - [19/Jan/2018:21:54:13 +0800] "GET /mavenmvc/emp/setLanguage?language=zh_CN HTTP/1.1" 302 - http-bio-8080-exec-9 2
+0:0:0:0:0:0:0:1 - - [19/Jan/2018:21:54:13 +0800] "GET /mavenmvc/index HTTP/1.1" 200 1158 http-bio-8080-exec-10 4
+0:0:0:0:0:0:0:1 - - [19/Jan/2018:21:54:15 +0800] "GET /mavenmvc/emp/empList HTTP/1.1" 200 5340 http-bio-8080-exec-10 141

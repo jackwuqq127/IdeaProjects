@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="${#httpServletRequest.getContextPath()+'/'}"/>
+    <meta charset="UTF-8"/>
+    <title>员工列表</title>
+</head>
+<body>
+    <img src="images/springboot.jpg" />
+
+    <table border="1" cellspacing="0" cellpadding="5">
+        <tr>
+            <td>序号</td>
+            <td>编号</td>
+            <td>姓名</td>
+            <td>工作</td>
+            <td>工资</td>
+            <td>奖金</td>
+            <td>入职日期</td>
+        </tr>
+        <tr th:each="emp,status:${empList}">
+            <td th:text="${status.count}"/>
+            <td th:text="${emp.empno} "/>
+            <td th:text="${emp.ename}"/>
+            <td th:text="${emp.job}"/>
+            <td th:text="${emp.sal}"/>
+            <td th:text="${emp.comm}"/>
+            <td th:text="${#dates.format(emp.hiredate, 'yyyy-MM-dd')}"/>
+        </tr>
+    </table>
+</body>
+</html>
